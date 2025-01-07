@@ -12,7 +12,7 @@ var app= express();
 dbConnection();
 //middleware
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:"https://twiter-clone-woad.vercel.app/",
     credentials:true,
 }))
 

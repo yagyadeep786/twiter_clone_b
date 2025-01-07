@@ -121,4 +121,30 @@ const GetFollowingTweet= async(req,res)=>{
     });
   }
 }
-export { CreateTweet, DeleteTweet, LikeOrDislike,GetAllTweets,GetFollowingTweet };
+
+const GetAllBookmarkTweet= async(req,res)=>{
+ try {
+  const userId= req.body.userId;
+  const result= await User.findById(userId);
+  if(!result){
+    return res.status(401).json({
+      msg:"No have bookmark",
+      status:false,
+    })
+  }
+
+  return res.status(200).json({
+    msg:"bookmark fatched",
+    bookmarks:result.bookmark,
+    status:true,
+  })
+
+ } catch (error) {
+  return res.status(400).json({
+    msg: error.message,
+    success: false,
+  });
+ }
+
+}
+export { CreateTweet, DeleteTweet, LikeOrDislike,GetAllTweets,GetFollowingTweet ,GetAllBookmarkTweet};
