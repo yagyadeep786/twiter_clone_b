@@ -77,7 +77,11 @@ const Login = async(req,res)=>{
             })
         }
         const token = jwt.sign({ userId: status._id }, process.env.TOKEN_SECRECT, { expiresIn: "2h" });
-        return res.status(200).cookie("token", token).json({
+        return res.status(200).cookie("token", token,{
+            httpOnly:true,
+            sameSite:none,
+            
+        }).json({
             msg: "welcome back " + status.username,
             userData: status,
             success: true
